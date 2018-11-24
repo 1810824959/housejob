@@ -10,9 +10,9 @@
     <title>寻屋地图</title>
     <meta name="description" content="方便快捷寻屋"/>
     <meta name="keywords" content="寻屋"/>
-    <link href="/static/css/main.css" rel='stylesheet' type='text/css'/>
-    <link href="/static/lib/layui/layui.css" rel="stylesheet" type="text/css"/>
-    <link href="/static/css/rent-map.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/main.css" rel='stylesheet' type='text/css'/>
+    <link href="/lib/layui/layui.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/rent-map.css" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.css" />
 </head>
 <body>
@@ -88,12 +88,12 @@
 </div>
 <!--<div th:include="common :: footer"></div>-->
 <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=Oi2uijgpb8tILz7Ys9Q48KbmmfHDSpjK"></script>
-<script type="text/javascript" src="/static/js/baidu-map/TextIconOverlay.js"></script>
-<script type="text/javascript" src="/static/js/baidu-map/MarkerClusterer.js"></script>
+<script type="text/javascript" src="/js/baidu-map/TextIconOverlay.js"></script>
+<script type="text/javascript" src="/js/baidu-map/MarkerClusterer.js"></script>
 <script type="text/javascript" src="http://api.map.baidu.com/library/SearchInfoWindow/1.5/src/SearchInfoWindow_min.js"></script>
-<script type="text/javascript" src="/static/lib/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/static/lib/layui/layui.js"></script>
-<script type="text/javascript" src="/static/js/rent-map.js"></script>
+<script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/js/rent-map.js"></script>
 <script type="text/javascript" th:inline="javascript">
     // 初始化加载地图数据
     var city = [[${city}]],

@@ -1,8 +1,14 @@
 package com.liyang.housejob.pojo;
 
-import java.util.Date;
+import org.springframework.data.annotation.Transient;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-public class User {
+import java.util.Collection;
+import java.util.Date;
+import java.util.List;
+
+public class User implements UserDetails {
     private Integer id;
 
     private String name;
@@ -55,8 +61,50 @@ public class User {
         this.phoneNumber = phoneNumber == null ? null : phoneNumber.trim();
     }
 
+    public List<GrantedAuthority> getAuthorityList() {
+        return authorityList;
+    }
+
+    public void setAuthorityList(List<GrantedAuthority> authorityList) {
+        this.authorityList = authorityList;
+    }
+
+    //透明注解
+    @Transient
+    private List<GrantedAuthority> authorityList;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.authorityList;
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return name;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {

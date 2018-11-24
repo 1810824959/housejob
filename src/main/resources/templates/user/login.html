@@ -5,10 +5,10 @@
     <title>Title</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href="/static/css/common.css" rel='stylesheet' type='text/css'/>
-    <link href="/static/css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="/static/lib/layui/layui.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="/static/css/user/login.css">
+    <link href="/css/common.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/lib/layui/layui.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/css/user/login.css">
 </head>
 <body>
 <div class="xunwu-container">
@@ -72,7 +72,7 @@
     </div>
 </div>
 <div th:include="common :: footer"></div>
-<script type="text/javascript" src="/static/lib/layui/layui.js"></script>
+<script type="text/javascript" src="/lib/layui/layui.js"></script>
 <script th:inline="javascript">
     $(function () {
         var authError = [[${param.authError}]];
