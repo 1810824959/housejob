@@ -21,9 +21,4 @@ public class AdminController {
         return "admin/login";
     }
 
-    @GetMapping("/user/login")
-    public String userLoginPage(){
-        return "user/login";
-    }
-
 }

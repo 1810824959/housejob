@@ -28,7 +28,7 @@ public class HomeController {
         return "500";
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/logout/page")
     public String loginOut(){
         return "logout";
     }

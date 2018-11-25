@@ -28,9 +28,12 @@ public class UserServiceImpl implements UserService {
         UserExample example = new UserExample();
         example.createCriteria().andNameEqualTo(username);
         List<User> users = userMapper.selectByExample(example);
-        if (users == null){
+
+        if (users.size()==0){
+            System.out.println("空空");
             return null;
         }
+        System.out.println("还是返回了点东西的");
         User user = users.get(0);
         Role role = roleService.getRoleById(user.getId());
         List<GrantedAuthority> list = new ArrayList<>();
