@@ -70,4 +70,5 @@ public class SupportAddress {
     public void setBaiduMapLat(Double baiduMapLat) {
         this.baiduMapLat = baiduMapLat;
     }
+
 }
