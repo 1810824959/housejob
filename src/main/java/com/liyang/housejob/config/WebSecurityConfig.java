@@ -2,6 +2,7 @@ package com.liyang.housejob.config;
 
 import com.liyang.housejob.security.AuthProvider;
 import com.liyang.housejob.security.LoginAuthFailHandler;
+import com.liyang.housejob.security.LoginAuthSuccessHandler;
 import com.liyang.housejob.security.LoginUrlEntryPoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -54,6 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
+                .successHandler(loginAuthSuccessHandler())
                 .failureHandler(loginAuthFailHandler())
                 .and()
 
@@ -94,5 +96,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LoginAuthFailHandler loginAuthFailHandler(){
         return new LoginAuthFailHandler(loginUrlEntryPoint());
+    }
+
+    @Bean
+    public LoginAuthSuccessHandler loginAuthSuccessHandler(){
+        return new LoginAuthSuccessHandler();
     }
 }
