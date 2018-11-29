@@ -1,7 +1,8 @@
 package com.liyang.housejob.service;
 
-import com.liyang.housejob.base.SupportAddrDTO;
-import com.liyang.housejob.pojo.SupportAddress;
+import com.liyang.housejob.service.DTO.ServiceMultiResult;
+import com.liyang.housejob.service.DTO.SubWayDTO;
+import com.liyang.housejob.service.DTO.SupportAddrDTO;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 
@@ -14,6 +15,10 @@ public interface HouseService {
     Response uploadFile(InputStream in) throws QiniuException;
     Response delete(String key) throws QiniuException;
 
-    List<SupportAddrDTO> getSupportAddrListByLevel(String level);
+    ServiceMultiResult<SupportAddrDTO> getSupportAddrListByLevel(String level);
+    ServiceMultiResult<SupportAddrDTO> getAllRegionsByCityName(String cityName);
+    ServiceMultiResult<SubWayDTO> getAllSubwayByCity(String cityName);
+    ServiceMultiResult<SubWayDTO> getAllStationBySubwayId(int subwayId);
+
 
 }
