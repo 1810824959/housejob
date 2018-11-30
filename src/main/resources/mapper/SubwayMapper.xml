@@ -98,6 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.Subway" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into subway (id, name, city_en_name
       )
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{cityEnName,jdbcType=VARCHAR}

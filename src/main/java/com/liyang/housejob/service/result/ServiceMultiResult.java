@@ -1,7 +1,11 @@
-package com.liyang.housejob.service.DTO;
+package com.liyang.housejob.service.result;
 
 import java.util.List;
 
+/**
+ * 服务接口通用结构  多个
+ * @param <T>
+ */
 public class ServiceMultiResult<T> {
     private long total;
     private List<T> result;

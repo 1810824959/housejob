@@ -1,13 +1,14 @@
 package com.liyang.housejob.service.Impl;
 
 import com.liyang.housejob.pojo.*;
-import com.liyang.housejob.service.DTO.ServiceMultiResult;
-import com.liyang.housejob.service.DTO.SubWayDTO;
-import com.liyang.housejob.service.DTO.SupportAddrDTO;
+import com.liyang.housejob.web.DTO.*;
 import com.liyang.housejob.mapper.SubwayMapper;
 import com.liyang.housejob.mapper.SubwayStationMapper;
 import com.liyang.housejob.mapper.SupportAddressMapper;
 import com.liyang.housejob.service.HouseService;
+import com.liyang.housejob.service.result.ServiceMultiResult;
+import com.liyang.housejob.service.result.ServiceResult;
+import com.liyang.housejob.web.form.HouseForm;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 import com.qiniu.storage.BucketManager;
@@ -142,6 +143,12 @@ public class HouseServiceImpl implements HouseService , InitializingBean {
         }
         return new ServiceMultiResult<>(subwayStationDTOList.size(),subwayStationDTOList);
     }
+
+    @Override
+    public ServiceResult<HouseDTO> saveHouse(HouseForm form) {
+        return null;
+    }
+
 
     @Override
     public void afterPropertiesSet() throws Exception {

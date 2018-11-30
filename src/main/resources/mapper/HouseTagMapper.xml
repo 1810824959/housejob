@@ -98,6 +98,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.HouseTag" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into house_tag (id, house_id, name
       )
     values (#{id,jdbcType=INTEGER}, #{houseId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}

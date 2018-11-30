@@ -1,14 +1,14 @@
 package com.liyang.housejob.service;
 
-import com.liyang.housejob.service.DTO.ServiceMultiResult;
-import com.liyang.housejob.service.DTO.SubWayDTO;
-import com.liyang.housejob.service.DTO.SupportAddrDTO;
+import com.liyang.housejob.service.result.ServiceMultiResult;
+import com.liyang.housejob.service.result.ServiceResult;
+import com.liyang.housejob.web.DTO.*;
+import com.liyang.housejob.web.form.HouseForm;
 import com.qiniu.common.QiniuException;
 import com.qiniu.http.Response;
 
 import java.io.File;
 import java.io.InputStream;
-import java.util.List;
 
 public interface HouseService {
     Response uploadFile(File file) throws QiniuException;
@@ -20,5 +20,5 @@ public interface HouseService {
     ServiceMultiResult<SubWayDTO> getAllSubwayByCity(String cityName);
     ServiceMultiResult<SubWayDTO> getAllStationBySubwayId(int subwayId);
 
-
+    ServiceResult<HouseDTO> saveHouse(HouseForm form);
 }

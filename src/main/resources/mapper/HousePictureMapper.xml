@@ -102,6 +102,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.HousePicture" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into house_picture (id, house_id, cdn_prefix, 
       width, height, location, 
       path)

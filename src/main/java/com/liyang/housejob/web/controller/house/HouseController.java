@@ -1,22 +1,25 @@
-package com.liyang.housejob.controller.house;
+package com.liyang.housejob.web.controller.house;
 
 import com.google.gson.Gson;
 import com.liyang.housejob.base.ApiResponse;
 import com.liyang.housejob.base.QiniuResponse;
-import com.liyang.housejob.service.DTO.ServiceMultiResult;
-import com.liyang.housejob.service.DTO.SubWayDTO;
-import com.liyang.housejob.service.DTO.SupportAddrDTO;
+import com.liyang.housejob.service.result.ServiceMultiResult;
+import com.liyang.housejob.service.result.ServiceResult;
+import com.liyang.housejob.web.DTO.HouseDTO;
+import com.liyang.housejob.web.DTO.SubWayDTO;
+import com.liyang.housejob.web.DTO.SupportAddrDTO;
 import com.liyang.housejob.service.HouseService;
+import com.liyang.housejob.web.form.HouseForm;
 import com.qiniu.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -117,6 +120,24 @@ public class HouseController {
         }
         return ApiResponse.ofSuccess(result.getResult());
     }
+
+    @PostMapping("/admin/add/house")
+    @ResponseBody
+    public ApiResponse addHouse(@Valid @ModelAttribute("form-house-add") HouseForm form , BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            //有错
+            return new ApiResponse(HttpStatus.BAD_REQUEST.value(),bindingResult.getAllErrors().get(0).getDefaultMessage(),null);
+        }
+        if (form.getPhotos().size()==0 || form.getCover()==null){
+            return ApiResponse.ofMessage(HttpStatus.BAD_REQUEST.value(),"图片为空");
+        }
+        ServiceResult<HouseDTO> result = houseService.saveHouse(form);
+        if (result.isSuccess()){
+            return ApiResponse.ofSuccess(result.getResult());
+        }
+        return ApiResponse.ofSuccess(ApiResponse.Status.NOT_VALID_PARAM);
+    }
+
 
 }
 

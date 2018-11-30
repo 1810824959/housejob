@@ -1,4 +1,4 @@
-package com.liyang.housejob.service.DTO;
+package com.liyang.housejob.web.DTO;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

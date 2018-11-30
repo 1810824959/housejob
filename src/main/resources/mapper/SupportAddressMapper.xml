@@ -102,6 +102,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.SupportAddress" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into support_address (id, belong_to, en_name, 
       cn_name, level, baidu_map_lng, 
       baidu_map_lat)

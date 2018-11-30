@@ -1,4 +1,4 @@
-package com.liyang.housejob.controller.user;
+package com.liyang.housejob.web.controller.user;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

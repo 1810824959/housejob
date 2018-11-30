@@ -1,6 +1,4 @@
-package com.liyang.housejob.service.DTO;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
+package com.liyang.housejob.web.DTO;
 
 public class SubWayDTO {
     private long id;

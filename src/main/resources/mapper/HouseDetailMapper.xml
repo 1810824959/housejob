@@ -108,6 +108,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.HouseDetail" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into house_detail (id, description, layout_desc, 
       traffic, round_service, rent_way, 
       address, subway_line_id, subway_line_name, 

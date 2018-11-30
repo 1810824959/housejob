@@ -106,6 +106,9 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.liyang.housejob.pojo.HouseSubscribe" >
+    <selectKey keyProperty="id" resultType="int" order="AFTER">
+      SELECT LAST_INSERT_ID();
+    </selectKey>
     insert into house_subscribe (id, house_id, user_id, 
       desc, status, create_time, 
       last_update_time, order_time, telephone, 
