@@ -43,7 +43,8 @@ public class House {
 
     private Integer adminId;
 
-    private Integer bathroom;
+
+    private Integer bathroom;//
 
     private String street;
 

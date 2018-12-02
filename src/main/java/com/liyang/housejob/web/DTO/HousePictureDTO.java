@@ -6,10 +6,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by 瓦力.
  */
 public class HousePictureDTO {
-    private Long id;
+    private int id;
 
     @JsonProperty(value = "house_id")
-    private Long houseId;
+    private int houseId;
 
     private String path;
 
@@ -20,19 +20,19 @@ public class HousePictureDTO {
 
     private int height;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public Long getHouseId() {
+    public int getHouseId() {
         return houseId;
     }
 
-    public void setHouseId(Long houseId) {
+    public void setHouseId(int houseId) {
         this.houseId = houseId;
     }
 

@@ -11,7 +11,7 @@ import javax.validation.constraints.Size;
  * Created by 瓦力.
  */
 public class HouseForm {
-    private Long id;
+    private int id;
 
     @NotNull(message = "大标题不允许为空!")
     @Size(min = 1, max = 30, message = "标题长度必须在1~30之间")
@@ -68,9 +68,9 @@ public class HouseForm {
     @Max(value = 1)
     private Integer rentWay;
 
-    private Long subwayLineId;
+    private int subwayLineId;
 
-    private Long subwayStationId;
+    private int subwayStationId;
 
     private int distanceToSubway = -1;
 
@@ -89,11 +89,11 @@ public class HouseForm {
 
     private List<PhotoForm> photos;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -217,19 +217,19 @@ public class HouseForm {
         this.rentWay = rentWay;
     }
 
-    public Long getSubwayLineId() {
+    public int getSubwayLineId() {
         return subwayLineId;
     }
 
-    public void setSubwayLineId(Long subwayLineId) {
+    public void setSubwayLineId(int subwayLineId) {
         this.subwayLineId = subwayLineId;
     }
 
-    public Long getSubwayStationId() {
+    public int getSubwayStationId() {
         return subwayStationId;
     }
 
-    public void setSubwayStationId(Long subwayStationId) {
+    public void setSubwayStationId(int subwayStationId) {
         this.subwayStationId = subwayStationId;
     }
 
