@@ -1,6 +1,7 @@
 package com.liyang.housejob.web.controller.house;
 
 import com.google.gson.Gson;
+import com.liyang.housejob.base.ApiDataTableResponse;
 import com.liyang.housejob.base.ApiResponse;
 import com.liyang.housejob.base.QiniuResponse;
 import com.liyang.housejob.service.result.ServiceMultiResult;
@@ -9,6 +10,7 @@ import com.liyang.housejob.web.DTO.HouseDTO;
 import com.liyang.housejob.web.DTO.SubWayDTO;
 import com.liyang.housejob.web.DTO.SupportAddrDTO;
 import com.liyang.housejob.service.HouseService;
+import com.liyang.housejob.web.form.DatatableSearch;
 import com.liyang.housejob.web.form.HouseForm;
 import com.qiniu.http.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,6 +138,19 @@ public class HouseController {
             return ApiResponse.ofSuccess(result.getResult());
         }
         return ApiResponse.ofSuccess(ApiResponse.Status.NOT_VALID_PARAM);
+    }
+
+    @PostMapping("admin/houses")
+    @ResponseBody
+    public ApiDataTableResponse getHouses(@ModelAttribute DatatableSearch datatableSearch){
+        ServiceMultiResult<HouseDTO> serviceMultiResult = houseService.getAllHouses(datatableSearch);
+        ApiDataTableResponse response = new ApiDataTableResponse(ApiResponse.Status.SUCCESS.getCode(),ApiResponse.Status.SUCCESS.getStandardMessage(),null);
+
+        response.setData(serviceMultiResult.getResult());
+        response.setRecordsFiltered(serviceMultiResult.getTotal());
+        response.setRecordsTotal(serviceMultiResult.getTotal());
+        response.setDraw(datatableSearch.getDraw());
+        return response;
     }
 
 

@@ -1,5 +1,7 @@
 package com.liyang.housejob.service.Impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.liyang.housejob.base.LoginUserUtil;
 import com.liyang.housejob.mapper.*;
 import com.liyang.housejob.pojo.*;
@@ -7,6 +9,7 @@ import com.liyang.housejob.web.DTO.*;
 import com.liyang.housejob.service.HouseService;
 import com.liyang.housejob.service.result.ServiceMultiResult;
 import com.liyang.housejob.service.result.ServiceResult;
+import com.liyang.housejob.web.form.DatatableSearch;
 import com.liyang.housejob.web.form.HouseForm;
 import com.liyang.housejob.web.form.PhotoForm;
 import com.qiniu.common.QiniuException;
@@ -205,6 +208,28 @@ public class HouseServiceImpl implements HouseService , InitializingBean {
         houseDTO.setTags(tags);
 
         return new ServiceResult<HouseDTO>(true, null, houseDTO);
+    }
+
+    @Override
+    public ServiceMultiResult<HouseDTO> getAllHouses(DatatableSearch datatableSearch) {
+        PageHelper.startPage(datatableSearch.getDraw(),datatableSearch.getLength());
+
+        HouseExample houseExample = new HouseExample();
+        houseExample.createCriteria();
+        List<House> houseList = houseMapper.selectByExample(houseExample);
+        PageInfo pageInfo = new PageInfo<>(houseList);
+//        System.out.println("size"+pageInfo.getSize());   3
+//        System.out.println("pages"+pageInfo.getPages()*3);  12
+//        System.out.println("total"+pageInfo.getTotal());  10
+
+        List<HouseDTO> houseDTOList = new ArrayList<>();
+        houseList.forEach(house -> {
+            HouseDTO houseDTO = modelMapper.map(house,HouseDTO.class);
+            houseDTO.setCover(this.cdnPrefix + house.getCover());
+            houseDTOList.add(houseDTO);
+        });
+
+        return new ServiceMultiResult<>(pageInfo.getTotal(),houseDTOList);
     }
 
     /**
