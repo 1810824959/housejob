@@ -212,10 +212,30 @@ public class HouseServiceImpl implements HouseService , InitializingBean {
 
     @Override
     public ServiceMultiResult<HouseDTO> getAllHouses(DatatableSearch datatableSearch) {
-        PageHelper.startPage(datatableSearch.getDraw(),datatableSearch.getLength());
+        // pageNum 字段有学问
+        PageHelper.startPage(datatableSearch.getStart()/datatableSearch.getLength()+1,datatableSearch.getLength());
 
         HouseExample houseExample = new HouseExample();
-        houseExample.createCriteria();
+        HouseExample.Criteria criteria = houseExample.createCriteria();
+        //状态模糊查询
+        if (datatableSearch.getStatus()!=null){
+            criteria.andStatusEqualTo(datatableSearch.getStatus());
+        }
+        //城市模糊查询
+        if (datatableSearch.getCity()!=null){
+            criteria.andCityEnNameEqualTo(datatableSearch.getCity());
+        }
+        //开始结束时间模糊查询
+        if (datatableSearch.getCreateTimeMin() != null && datatableSearch.getCreateTimeMax() != null){
+            criteria.andCreateTimeBetween(datatableSearch.getCreateTimeMin(),datatableSearch.getCreateTimeMax());
+        }
+        //标题模糊查询
+        if (datatableSearch.getTitle() != null){
+            criteria.andTitleLike("%"+datatableSearch.getTitle()+"%");
+        }
+
+        houseExample.setOrderByClause("create_time"+' '+datatableSearch.getDirection());
+
         List<House> houseList = houseMapper.selectByExample(houseExample);
         PageInfo pageInfo = new PageInfo<>(houseList);
 //        System.out.println("size"+pageInfo.getSize());   3

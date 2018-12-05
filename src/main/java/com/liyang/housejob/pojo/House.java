@@ -1,5 +1,8 @@
 package com.liyang.housejob.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.apache.ibatis.annotations.Result;
+
 import java.util.Date;
 
 public class House {
