@@ -2,6 +2,7 @@ package com.liyang.housejob.pojo;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.ibatis.annotations.Result;
+import javax.persistence.Column;
 
 import java.util.Date;
 
@@ -26,6 +27,7 @@ public class House {
 
     private Integer status;
 
+    @Column(name = "create_time")
     private Date createTime;
 
     private Date lastUpdateTime;

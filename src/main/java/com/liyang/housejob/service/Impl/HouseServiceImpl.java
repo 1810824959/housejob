@@ -234,7 +234,7 @@ public class HouseServiceImpl implements HouseService , InitializingBean {
             criteria.andTitleLike("%"+datatableSearch.getTitle()+"%");
         }
 
-        houseExample.setOrderByClause("create_time"+' '+datatableSearch.getDirection());
+        houseExample.setOrderByClause(stringConvertor(datatableSearch.getOrderBy())+' '+datatableSearch.getDirection());
 
         List<House> houseList = houseMapper.selectByExample(houseExample);
         PageInfo pageInfo = new PageInfo<>(houseList);
@@ -250,6 +250,24 @@ public class HouseServiceImpl implements HouseService , InitializingBean {
         });
 
         return new ServiceMultiResult<>(pageInfo.getTotal(),houseDTOList);
+    }
+
+
+    /**
+     * 字段不匹配，进行转换
+     * @param oldString
+     * @return
+     */
+    private String stringConvertor(String oldString){
+        String StringNew =null;
+        for (int i =0 ; i<oldString.length() ; i++){
+            char word = oldString.charAt(i);
+            if (word>='A' && word<='Z'){
+                String wordNew = String.valueOf(word);
+                StringNew = oldString.replaceAll(wordNew,"_"+wordNew.toLowerCase());
+            }
+        }
+        return StringNew == null ? oldString : StringNew ;
     }
 
     /**
